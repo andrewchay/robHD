@@ -1,0 +1,12 @@
+library(robHD)
+x = matrix(rnorm(20000), nrow = 100)
+b = c(0.5, 1, -1, 2, -0.5, rep(0, 195))
+y = crossprod(t(x), b) + rnorm(100, 0, 1)
+delta = rbinom(100, 1, .7)
+res = robHD(x, y, delta, theta = c(10, 20))
+
+x = matrix(rnorm(40000), nrow = 200)
+b = c(1, 1, 1, 1, -1, rep(0, 195))
+y = log(exp(crossprod(t(x), b)) + rweibull(200, 4, 4))
+delta = rbinom(200, 1, .5)
+res = robHD(x, y, delta, theta = c(1, 10, 100))
